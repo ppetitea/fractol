@@ -8,6 +8,25 @@
 # include <stdlib.h>
 # include "key.h"
 
+typedef struct		s_fractal
+{
+	float		w;
+	float		h;
+	float		a;
+	float		b;
+	float		x;
+	float		y;
+	float		dx;
+	float		dy;
+	float		xmin;
+	float		ymin;
+	float		xmax;
+	float		ymax;
+	float		nexta;
+	float		nextb;
+	float		ab;
+}			t_fractal;
+
 typedef struct		s_param
 {
 	int		fractal;
@@ -20,6 +39,6 @@ typedef struct		s_param
 }			t_param;
 
 void	*manage_error(t_param *p, int code, const char *message);
-
+void	draw_fractal(t_param *p);
 
 #endif

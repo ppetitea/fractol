@@ -45,7 +45,7 @@ int	main(int ac, char **av)
 
 	if (check_inputs(ac, av))
 	{
-		if (fill_param(&p), av[1])
+		if (fill_param(&p, av[1]))
 			return (!manage_error(&p, 0, "fill_param() --> error\n"));
 		draw_fractal(&p);
 		mlx_loop(p.init);
