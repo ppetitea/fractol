@@ -2,8 +2,9 @@ NAME		= fractol
 
 # Sources
 SRC		= fractol.c\
-		  ./sources/manage_error.c\
-		  ./sources/draw_fractal.c
+			./sources/manage_error.c\
+			./sources/draw_fractal.c\
+			./sources/manage_callback.c
 
 UNAME =	$(shell uname)
 

@@ -1,12 +1,6 @@
 #include "fractol.h"
 #include "mlx.h"
 
-void	calcul_suite(t_fractal *f)
-{
-	(void)*f;
-
-}
-
 void	draw_fractal(t_param *p)
 {
 	t_fractal	f;
@@ -14,10 +8,10 @@ void	draw_fractal(t_param *p)
 	int		j;
 	int		n;
 
-	f.w = 5;
+	f.w = 5 * p->zoom;
 	f.h = (f.w * p->ysize) / p->xsize;
-	f.xmin = -f.w / 2;
-	f.ymin = -f.h / 2;
+	f.xmin = (-f.w / 2) + p->translationx;
+	f.ymin = (-f.h / 2) + p->translationy;
 	f.xmax = f.xmin + f.w;
 	f.ymax	= f.ymin + f.h;
 	f.dx = (f.xmax - f.xmin) / p->xsize;
@@ -44,9 +38,9 @@ void	draw_fractal(t_param *p)
 					break ;
 			}
 			if (n == 100)
-				p->pixels[j + i * p->xsize] = 0x00AAAAAA;
+				p->pixels[j + i * p->xsize] = 0x00000000;
 			else
-				p->pixels[j + i * p->xsize] = sqrt((float)n /100.0f);
+				p->pixels[j + i * p->xsize] = n / 100.0 * 16777215;
 			f.x += f.dx;
 		}
 		f.y += f.dy;

@@ -23,10 +23,16 @@ int	fill_param(t_param *p, char *fractal)
 	int	x;
 	int	y;
 	
-	x = 1280;
-	y = 720;
+	x = 2560;
+	y = 1396;
+	//x = 200;
+	//y = 200;
 	p->xsize = x;
 	p->ysize = y;
+	p->zoom = 1;
+	p->press = 0;
+	p->translationx = 0;
+	p->translationy = 0;
 	p->fractal = ft_atoi(fractal);
 	if (!(p->init = mlx_init()))
 		return (!manage_error(p, 0, "mlx_init() --> error\n"));
@@ -48,6 +54,9 @@ int	main(int ac, char **av)
 		if (fill_param(&p, av[1]))
 			return (!manage_error(&p, 0, "fill_param() --> error\n"));
 		draw_fractal(&p);
+		mlx_hook(p.window, 2, 1L << 0, press_callback, (void*)&p);
+		mlx_hook(p.window, 3, 1L << 1, release_callback, (void*)&p);
+		mlx_loop_hook(p.init, manage_callback, (void*)&p);
 		mlx_loop(p.init);
 	}
 	return (0);
