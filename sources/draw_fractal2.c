@@ -40,8 +40,7 @@ void	draw_fractal(t_param *p)
 			if (n == 100)
 				p->pixels[j + i * p->xsize] = 0x00000000;
 			else
-				p->pixels[j + i * p->xsize] = n * 0x00000011;
-				/// 100.0 * 16777215;
+				p->pixels[j + i * p->xsize] = n / 100.0 * 16777215;
 				//manage_color(p);
 			f.x += f.dx;
 		}

@@ -27,6 +27,8 @@ int	fill_param(t_param *p, char *fractal)
 	//y = 1396;
 	x = 780;
 	y = 460;
+	p->x = 0;
+	p->y = 0;
 	p->xsize = x;
 	p->ysize = y;
 	p->zoom = 1;
@@ -54,6 +56,7 @@ int	main(int ac, char **av)
 		if (fill_param(&p, av[1]))
 			return (!manage_error(&p, 0, "fill_param() --> error\n"));
 		draw_fractal(&p);
+		mlx_hook(p.window, 4, 1L << 2, mouse_callback, (void*)&p);
 		mlx_hook(p.window, 2, 1L << 0, press_callback, (void*)&p);
 		mlx_hook(p.window, 3, 1L << 1, release_callback, (void*)&p);
 		mlx_hook(p.window, 6, 1L << 6, pointeur_callback, (void*)&p);
