@@ -48,4 +48,6 @@ void	draw_fractal(t_param *p);
 int		manage_callback(void *param);
 int		press_callback(int key, void *param);
 int		release_callback(int key, void *param);
+int		pointeur_callback(int x, int y, void *param);
+
 #endif

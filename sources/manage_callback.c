@@ -33,6 +33,27 @@ int		release_callback(int key, void *param)
 	return (1);
 }
 
+int	pointeur_callback(int x, int y, void *param)
+{
+	t_param *p;
+
+	
+	p = (t_param*)param;
+	if (x >= 0 && x <= p->xsize)
+	{
+		x -= p->xsize * 0.5;
+		p->translationx = ((double)x / ((double)p->xsize * 0.5));
+	}
+	if (y >= 0 && y <= p->ysize)
+	{
+		y -= p->ysize * 0.5;
+		p->translationy = ((double)y / ((double)p->ysize * 0.5));
+	}
+	//p->press = 1;
+	printf("tx %f, ty %f\n", p->translationx, p->translationy); 
+	return (1);
+}
+
 void	reset_image(t_param *p)
 {
 	int	i;
