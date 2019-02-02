@@ -94,5 +94,19 @@ int	manage_callback(void *param)
 		manage_error(p, 2, "Exit with ESC\n");
 		exit(0);
 	}
+	if (p->press && p->fractal == 1)
+	{
+		if (p->rangex > -1 && p->key == KEY_LEFT) 
+			p->rangex -= 0.01;
+		if (p->rangex < 1 && p->key == KEY_RIGHT) 
+			p->rangex += 0.01;
+		if (p->rangey > -1 && p->key == KEY_UP) 
+			p->rangey -= 0.01;
+		if (p->rangey < 1 && p->key == KEY_DOWN) 
+			p->rangey += 0.01;
+		reset_image(p);
+		mlx_clear_window(p->init, p->window);
+		draw_fractal(p);
+	}
 	return (0);
 }

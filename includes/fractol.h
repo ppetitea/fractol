@@ -36,6 +36,8 @@ typedef struct		s_fractal
 typedef struct		s_param
 {
 	int				fractal;
+	double				rangex;
+	double				rangey;
 	void			*init;
 	void			*window;
 	void			*img;

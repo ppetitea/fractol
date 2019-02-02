@@ -32,15 +32,15 @@ void	draw_fractal(t_param *p)
 				f.nexta = f.a * f.a;
 				f.nextb = f.b * f.b;
 				f.ab = 2.0f * f.a * f.b;
-				f.a = f.nexta - f.nextb + f.x;
-				f.b = f.ab + f.y;
+				f.a = f.nexta - f.nextb + p->rangex + f.x;
+				f.b = f.ab + p->rangey + f.y;
 				if (f.a * f.a + f.b * f.b > 16.0)
 					break ;
 			}
 			if (n == 100)
 				p->pixels[j + i * p->xsize] = 0x00000000;
 			else
-				p->pixels[j + i * p->xsize] = n * 0x00000011;
+				p->pixels[j + i * p->xsize] = n * 0x00000019;
 				/// 100.0 * 16777215;
 				//manage_color(p);
 			f.x += f.dx;
