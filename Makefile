@@ -4,7 +4,8 @@ NAME		= fractol
 SRC		= fractol.c\
 			./sources/manage_error.c\
 			./sources/draw_fractal.c\
-			./sources/manage_callback.c
+			./sources/manage_callback.c\
+			./sources/callback.c
 
 UNAME =	$(shell uname)
 

@@ -22,21 +22,27 @@ int	fill_param(t_param *p, char *fractal)
 	int	t;
 	int	x;
 	int	y;
-	
-	//x = 2560;
-	//y = 1396;
+	int	i;
+
+	i = -1;
 	x = 780;
 	y = 460;
-	p->x = 0;
-	p->y = 0;
+	//x = 2560;
+	//y = 1396;
+	while (++i < 3)
+	{
+		p->x[i] = 0;
+		p->y[i] = 0;
+		p->zoom[i] = 1;
+		p->translationx[i] = 0;
+		p->translationy[i] = 0;
+	}
 	p->xsize = x;
 	p->ysize = y;
-	p->zoom = 1;
-	p->rangex = 0;
-	p->rangey = 0;
+	p->rangex= 0;
+	p->rangey= 0;
+	p->move = 0;
 	p->press = 0;
-	p->translationx = 0;
-	p->translationy = 0;
 	p->fractal = ft_atoi(fractal);
 	if (!(p->init = mlx_init()))
 		return (!manage_error(p, 0, "mlx_init() --> error\n"));
@@ -61,7 +67,7 @@ int	main(int ac, char **av)
 		mlx_hook(p.window, 4, 1L << 2, mouse_callback, (void*)&p);
 		mlx_hook(p.window, 2, 1L << 0, press_callback, (void*)&p);
 		mlx_hook(p.window, 3, 1L << 1, release_callback, (void*)&p);
-		mlx_hook(p.window, 6, 1L << 6, pointeur_callback, (void*)&p);
+		mlx_hook(p.window, 6, 1L << 6, pointer_callback, (void*)&p);
 		mlx_loop_hook(p.init, manage_callback, (void*)&p);
 		mlx_loop(p.init);
 	}
