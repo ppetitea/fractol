@@ -9,7 +9,7 @@ t_rgb		iteration(t_param *p, t_fractal *f)
 	n = -1;
 	f->a = f->x;
 	f->b = f->y;
-	while (++n < 100)
+	while (++n < p->iterations)
 	{
 		f->nexta = f->a * f->a;
 		f->nextb = f->b * f->b;
@@ -21,9 +21,9 @@ t_rgb		iteration(t_param *p, t_fractal *f)
 		if (f->a * f->a + f->b * f->b > 16.0)
 			break ;
 	}
-	if (n == 100)
+	if (n == p->iterations)
 		return (ft_rgb(255, 255, 255));
-	return (ft_hsv_to_rgb(ft_hsv(n / 100.0 * 360.0, 1.0 - n / 100.0, 1.0)));
+	return (ft_hsv_to_rgb(ft_hsv(n / (double)p->iterations* 360.0, 1.0 - n / (double)p->iterations, 1.0)));
 }
 
 int		int_power_int(int nb, int power)
@@ -36,14 +36,14 @@ int		int_power_int(int nb, int power)
 	return (tmp);
 }
 
-t_rgb	iteration_multibrot(t_fractal *f)
+t_rgb	iteration_multibrot(t_param *p, t_fractal *f)
 {
 	int n;
 
 	n = -1;
 	f->a = f->x;
 	f->b = f->y;
-	while (++n < 100)
+	while (++n < p->iterations)
 	{
 		f->nexta = f->a * f->a;
 		f->nextb = f->b * f->b;
@@ -55,9 +55,9 @@ t_rgb	iteration_multibrot(t_fractal *f)
 		if (f->a * f->a + f->b + f->b > 16.0)
 			break ;
 	}
-	if (n == 100)
+	if (n == p->iterations)
 		return (ft_rgb(255, 255, 255));
-	return (ft_hsv_to_rgb(ft_hsv(n / 100.0 * 360.0, 1.0 - n / 100.0, 1.0)));
+	return (ft_hsv_to_rgb(ft_hsv(n / (double)p->iterations * 360.0, 1.0 - n / (double)p->iterations, 1.0)));
 }
 
 void	initialise_fractal_param(t_param *p, t_fractal *f)
@@ -91,7 +91,7 @@ void	draw_fractal(t_param *p)
 			if (p->fractal != 3)
 				n = iteration(p, &f);
 			else
-				n = iteration_multibrot(&f);
+				n = iteration_multibrot(p, &f);
 			p->pixels[j + i * p->xsize] = ft_rgb_to_int(n);
 			f.x += f.dx;
 		}

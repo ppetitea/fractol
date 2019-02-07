@@ -6,7 +6,7 @@
 /*   By: pp <pp@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:58:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2019/02/07 18:25:10 by pp               ###   ########.fr       */
+/*   Updated: 2019/02/07 18:30:36 by pp               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int		mouse_callback(int button, int x, int y, void *param)
 	p = (t_param*)param;
 	if ((x >= 0 && x <= p->xsize) && (y >= 0 && y <= p->ysize))
 	{
-		zoom = p->zoom[1];
-		tx = p->translationx[1];
-		ty = p->translationy[1];
+		zoom = p->zoom[p->fractal - 1];
+		tx = p->translationx[p->fractal - 1];
+		ty = p->translationy[p->fractal - 1];
 		if (!(p->fractal == 1 && p->move))
 		{
 			p->zoom[p->fractal - 1] *= (button == 4) ? 0.75f : 1;

@@ -6,7 +6,7 @@
 /*   By: pp <pp@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:58:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2019/02/02 21:49:26 by pp               ###   ########.fr       */
+/*   Updated: 2019/02/07 18:52:18 by pp               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	manage_callback(void *param)
 		p->fractal = p->key == KEY_PAD_1 ? 1 : p->fractal;
 		p->fractal = p->key == KEY_PAD_2 ? 2 : p->fractal;
 		p->fractal = p->key == KEY_PAD_3 ? 3 : p->fractal;
+		p->iterations += p->key == KEY_PAD_ADD ? 1 : 0;
+		p->iterations -= p->key == KEY_PAD_SUB ? 1 : 0;
 		draw(p);
 	}
 	return (0);

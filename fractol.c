@@ -25,8 +25,8 @@ int	fill_param(t_param *p, char *fractal)
 	int	i;
 
 	i = -1;
-	x = 780;
-	y = 460;
+	x = 720;
+	y = 480;
 	//x = 2560;
 	//y = 1396;
 	while (++i < 3)
@@ -37,6 +37,7 @@ int	fill_param(t_param *p, char *fractal)
 		p->translationx[i] = 0;
 		p->translationy[i] = 0;
 	}
+	p->iterations = 100;
 	p->xsize = x;
 	p->ysize = y;
 	p->rangex= 0;

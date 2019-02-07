@@ -42,6 +42,7 @@ typedef struct		s_param
 	int				ysize;
 	int				key;
 	int				press;
+	int             iterations;
 	int				pointer;
 	double			zoom[3];
 	double          ratiox;
