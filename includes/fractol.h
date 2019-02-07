@@ -44,6 +44,8 @@ typedef struct		s_param
 	int				press;
 	int				pointer;
 	double			zoom[3];
+	double          ratiox;
+	double          ratioy;
 	double			translationx[3];
 	double			translationy[3];
 	double			x[3];

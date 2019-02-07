@@ -6,7 +6,7 @@
 /*   By: pp <pp@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:58:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2019/02/02 22:04:27 by pp               ###   ########.fr       */
+/*   Updated: 2019/02/07 18:25:10 by pp               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	pointer_callback(int x, int y, void *param)
 	p = (t_param*)param;
 	if (x >= 0 && x <= p->xsize && y >= 0 && y <= p->ysize)
 	{
+		p->ratiox = (double)x / (double)p->xsize;
+		p->ratioy = y / (double)p->ysize;
 		x -= p->xsize * 0.5;
 		p->translationx[p->fractal - 1] = ((double)x / ((double)p->xsize * 0.5));
 		y -= p->ysize * 0.5;
@@ -62,24 +64,30 @@ int	pointer_callback(int x, int y, void *param)
 int		mouse_callback(int button, int x, int y, void *param)
 {
 	t_param *p;
+	double tx;
+	double ty;
+	double zoom;
 
 	p = (t_param*)param;
 	if ((x >= 0 && x <= p->xsize) && (y >= 0 && y <= p->ysize))
 	{
+		zoom = p->zoom[1];
+		tx = p->translationx[1];
+		ty = p->translationy[1];
 		if (!(p->fractal == 1 && p->move))
 		{
 			p->zoom[p->fractal - 1] *= (button == 4) ? 0.75f : 1;
-			p->zoom[p->fractal - 1] *= (button == 5) ? 1.50f : 1;
+			p->zoom[p->fractal - 1] *= (button == 5) ? 1.5f : 1;
 		}
 		if (button == 4 && !(p->fractal == 1 && p->move))
 		{
-			p->x[p->fractal - 1] += p->pointer ? (p->translationx[p->fractal - 1] * 0.84/*0.835*/) * p->zoom[p->fractal - 1] : 0;
-			p->y[p->fractal - 1] += p->pointer ? (p->translationy[p->fractal - 1] * 0.5/*0.455*/) * p->zoom[p->fractal - 1] : 0;
+			p->x[p->fractal - 1] += p->pointer ? (zoom - zoom * 0.75) * tx * 0.5 : 0;
+			p->y[p->fractal - 1] += p->pointer ? ((zoom - zoom * 0.75) * ty * 0.5 * (double)p->ysize) / (double)p->xsize: 0;
 		}
 		if (button == 5 && !(p->fractal == 1 && p->move))
 		{
-			p->x[p->fractal - 1] -= p->pointer ? (p->translationx[p->fractal - 1] * 0.84/*0.835*/) * p->zoom[p->fractal - 1] : 0;
-			p->y[p->fractal - 1] -= p->pointer ? (p->translationy[p->fractal - 1] * 0.5/*0.455*/) * p->zoom[p->fractal - 1] : 0;
+			p->x[p->fractal - 1] += p->pointer ? (zoom - zoom * 1.5) * tx * 0.5 : 0;
+			p->y[p->fractal - 1] += p->pointer ? ((zoom - zoom * 1.5) * ty * 0.5 * (double)p->ysize) / (double)p->xsize: 0;
 		}
 		draw(p);
 	}

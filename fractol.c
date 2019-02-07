@@ -33,7 +33,7 @@ int	fill_param(t_param *p, char *fractal)
 	{
 		p->x[i] = 0;
 		p->y[i] = 0;
-		p->zoom[i] = 1;
+		p->zoom[i] = 10;
 		p->translationx[i] = 0;
 		p->translationy[i] = 0;
 	}

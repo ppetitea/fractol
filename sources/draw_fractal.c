@@ -62,7 +62,7 @@ t_rgb	iteration_multibrot(t_fractal *f)
 
 void	initialise_fractal_param(t_param *p, t_fractal *f)
 {
-	f->w = 5 * p->zoom[p->fractal - 1];
+	f->w = p->zoom[p->fractal - 1];
 	f->h = (f->w * p->ysize) / p->xsize;
 	f->xmin = (-f->w / 2) + p->x[p->fractal - 1];
 	f->ymin = (-f->h / 2) + p->y[p->fractal - 1];
