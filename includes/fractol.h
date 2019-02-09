@@ -30,10 +30,9 @@ typedef struct		s_fractal
 typedef struct		s_param
 {
 	int				fractal;
-	
-	double				rangex;
-	double				rangey;
-	double				move;
+	double			rangex;
+	double			rangey;
+	double			move;
 	void			*init;
 	void			*window;
 	void			*img;
@@ -42,8 +41,11 @@ typedef struct		s_param
 	int				ysize;
 	int				key;
 	int				press;
+	int             iterations;
 	int				pointer;
 	double			zoom[3];
+	double          ratiox;
+	double          ratioy;
 	double			translationx[3];
 	double			translationy[3];
 	double			x[3];
@@ -59,5 +61,6 @@ int		pointer_callback(int x, int y, void *param);
 int		mouse_callback(int button, int x, int y, void *param);
 void	reset_image(t_param *p);
 void	draw(t_param *p);
+void	loop(t_param *p);
 
 #endif
