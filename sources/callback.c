@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   callback.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pp <pp@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:58:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2019/02/02 22:04:27 by pp               ###   ########.fr       */
+/*   Updated: 2019/02/05 20:21:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,16 @@ int		mouse_callback(int button, int x, int y, void *param)
 		}
 		if (button == 4 && !(p->fractal == 1 && p->move))
 		{
-			p->x[p->fractal - 1] += p->pointer ? (p->translationx[p->fractal - 1] * 0.84/*0.835*/) * p->zoom[p->fractal - 1] : 0;
-			p->y[p->fractal - 1] += p->pointer ? (p->translationy[p->fractal - 1] * 0.5/*0.455*/) * p->zoom[p->fractal - 1] : 0;
+			p->x[p->fractal - 1] += p->pointer ? (p->translationx[p->fractal - 1] /* 0.84*//*0.835*/) * p->zoom[p->fractal - 1] : 0;
+			p->y[p->fractal - 1] += p->pointer ? (p->translationy[p->fractal - 1] /*0.455*/) * p->zoom[p->fractal - 1] : 0;
 		}
 		if (button == 5 && !(p->fractal == 1 && p->move))
 		{
-			p->x[p->fractal - 1] -= p->pointer ? (p->translationx[p->fractal - 1] * 0.84/*0.835*/) * p->zoom[p->fractal - 1] : 0;
-			p->y[p->fractal - 1] -= p->pointer ? (p->translationy[p->fractal - 1] * 0.5/*0.455*/) * p->zoom[p->fractal - 1] : 0;
+			p->x[p->fractal - 1] -= p->pointer ? (p->translationx[p->fractal - 1] /* 0.84*//*0.835*/) * p->zoom[p->fractal - 1] : 0;
+			p->y[p->fractal - 1] -= p->pointer ? (p->translationy[p->fractal - 1] /*0.455*/) * p->zoom[p->fractal - 1] : 0;
 		}
+		//printf("x %f, y %f\n", p->x[0], p->y[0]);
+		printf("x %f, y %f\n", p->translationx[0], p->translationy[0]);
 		draw(p);
 	}
 	return (1);
