@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_callback.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pp <pp@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:58:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2019/02/12 12:20:58 by pp               ###   ########.fr       */
+/*   Updated: 2019/02/12 13:49:10 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int	manage_callback(void *param)
 		fp.iterations *= p->key == KEY_PAD_ADD ? 1.5 : 1;
 		fp.iterations *= p->key == KEY_PAD_SUB && fp.iterations > 2 ? 0.75 : 1;
 		p->fp[p->fn] = fp;
-		draw(p);
 	}
+	draw(p);
 	loop(p);
 	return (0);
 }
