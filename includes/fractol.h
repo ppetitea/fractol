@@ -8,6 +8,16 @@
 # include <stdlib.h>
 # include "key.h"
 
+typedef struct		s_fractal_param
+{
+	double			tx;
+	double			ty;
+	double			range;
+	double			pointerx;
+	double			pointery;
+	int             iterations;
+}					t_fractal_param;
+
 typedef struct		s_fractal
 {
 	double		w;
@@ -29,27 +39,18 @@ typedef struct		s_fractal
 
 typedef struct		s_param
 {
-	int				fractal;
-	double			rangex;
-	double			rangey;
-	double			move;
+	t_fractal_param *fp;
 	void			*init;
 	void			*window;
 	void			*img;
 	int				*pixels;
 	int				xsize;
 	int				ysize;
-	int				key;
-	int				press;
-	int             iterations;
+	int				fn;
 	int				pointer;
-	double			zoom[3];
-	double          ratiox;
-	double          ratioy;
-	double			translationx[3];
-	double			translationy[3];
-	double			x[3];
-	double			y[3];
+	int				press;
+	int				key;
+	int				is_range_lock;
 }					t_param;
 
 void	*manage_error(t_param *p, int code, const char *message);
