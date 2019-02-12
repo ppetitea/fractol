@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_keys_macos.h                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:23:42 by ppetitea          #+#    #+#             */
+/*   Updated: 2019/02/12 16:15:31 by ppetitea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MLX_KEYS_MACOS_H
 # define MLX_KEYS_MACOS_H
- 
+
 # ifdef __linux__
 #  define KEY_ESCAPE         65307
 #  define KEY_F1             65470
@@ -113,9 +125,9 @@
 #  define KEY_PAD_ENTER      65421
 #  define KEY_PAD_DOT        65439
 #  define KEY_PAD_DELETE     65439
- 
+
 # else
- 
+
 #  define KEY_ESCAPE         53
 #  define KEY_F1             122
 #  define KEY_F2             120
@@ -233,6 +245,6 @@
 #  define KEY_PAD_ADD        69
 #  define KEY_PAD_ENTER      76
 #  define KEY_PAD_DOT        65
- 
+
 # endif
 #endif

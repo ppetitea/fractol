@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:14:43 by ppetitea          #+#    #+#             */
+/*   Updated: 2019/02/12 15:53:26 by ppetitea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/fractol.h"
 #include "libft.h"
 #include "mlx.h"
@@ -5,9 +17,9 @@
 int	check_inputs(int ac, char **av)
 {
 	if (ac == 2 && ft_atoi(av[1]) > 0 && ft_atoi(av[1]) <= 3)
-		return(1);
+		return (1);
 	else
-	{		
+	{
 		ft_putstr("usage : fractol [fractals]\n"
 			" fractals :\n"
 			" 1 --> Julia\n"
@@ -29,9 +41,7 @@ int	fill_fractal_params(t_param *p)
 		p->fp[i].tx = 0;
 		p->fp[i].ty = 0;
 		p->fp[i].range = 5;
-		p->fp[p->fn].pointerx = 0;
-		p->fp[p->fn].pointery = 0;
-		p->fp[i].iterations = 100;
+		p->fp[i].iterations = 42;
 	}
 	return (0);
 }
@@ -52,14 +62,13 @@ int	fill_param(t_param *p, char *fractal)
 	if (!(p->init = mlx_init()))
 		return (!manage_error(p, 0, "mlx_init() --> error\n"));
 	if (!(p->window = mlx_new_window(p->init, x, y, "fract'ol")))
-		return (!manage_error(p, 0, "mlx_new_window() --> error\n"));
+		return (!manage_error(p, 1, "mlx_new_window() --> error\n"));
 	if (!(p->img = mlx_new_image(p->init, x, y)))
-		return (!manage_error(p, 1, "mlx_new_image() --> error\n"));
+		return (!manage_error(p, 2, "mlx_new_image() --> error\n"));
 	if (!(p->pixels = (int*)mlx_get_data_addr(p->img, &t, &t, &t)))
-		return (!manage_error(p, 1, "mlx_get_data() --> error\n"));
+		return (!manage_error(p, 2, "mlx_get_data() --> error\n"));
 	if (fill_fractal_params(p))
-		return (!manage_error(p, 1, "fill_fractal_params() --> error\n"));
-
+		return (!manage_error(p, 3, "fill_fractal_params() --> error\n"));
 	return (0);
 }
 

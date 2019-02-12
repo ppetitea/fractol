@@ -10,19 +10,22 @@ SRC		= fractol.c\
 UNAME =	$(shell uname)
 
 LIBFT_FOLDER	= ./libft
+LIBFT			= $(LIBFT_FOLDER)/libft.a
 
 ifeq ($(UNAME), Linux)
-MLX_FOLDER	= minilibx
-LIB_FOLDERS	= -L$(MLX_FOLDER) -L$(LIBFT_FOLDER) -L/usr/X11/lib
-LIBS		= -lmlx -lft -lXext -lX11 -lm
-LDFLAGS		=
+	MLX_FOLDER	= minilibx
+	LIB_FOLDERS	= -L$(MLX_FOLDER) -L$(LIBFT_FOLDER) -L/usr/X11/lib
+	LIBS		= -lmlx -lft -lXext -lX11 -lm
+	LDFLAGS		=
 else
-MLX_FOLDER	= minilibx_macos
-LIB_FOLDERS	= -L$(MLX_FOLDER) -L$(LIBFT_FOLDER)
-LIBS		= -lmlx -lft
-LDFLAGS		= -framework OpenGL -framework AppKit
+	MLX_FOLDER	= minilibx_macos
+	LIB_FOLDERS	= -L$(MLX_FOLDER) -L$(LIBFT_FOLDER)
+	LIBS		= -lmlx -lft
+	LDFLAGS		= -framework OpenGL -framework AppKit
 endif
 
+MLX			= $(MLX_FOLDER)/libmlx.a
+ 
 # Compilation
 CXX		= gcc
 # -03 -> flag d'optimisation eleve de gcc
@@ -36,7 +39,7 @@ OBJ		= $(SRC:.c=.o)
 GREEN		= \033[32m
 RESET		= \033[0m
 
-all: libft mlx $(NAME)
+all: $(LIBFT) $(MLX) $(NAME)
 
 $(NAME): $(OBJ)
 	@printf "$(GREEN)[cc]$(RESET): done\n"
@@ -52,7 +55,7 @@ $(NAME): $(OBJ)
 run: all
 	@./$(NAME)
 
-libft:
+$(LIBFT):
 	@printf "$(GREEN)[mk]$(RESET): libft all\n"
 	@make -C libft
 	@printf "\e[1A\e[0K"
@@ -76,7 +79,7 @@ libft-re:
 	@printf "\e[1A\e[0K"
 	@printf "$(GREEN)[mk]$(RESET): libft re done\n"
 
-mlx:
+$(MLX):
 	@printf "$(GREEN)[mk]$(RESET): mlx all\n"
 	@make -C $(MLX_FOLDER) &>/dev/null
 	@printf "\e[1A\e[0K"
@@ -110,5 +113,5 @@ fclean: clean libft-fclean mlx-fclean
 
 re: fclean libft mlx all
 
-.PHONY: all $(NAME) norm libft libft-clean libft-fclean libft-re mlx mlx-clean \
+.PHONY: all norm libft libft-clean libft-fclean libft-re mlx mlx-clean \
 		mlx-fclean mlx-re clean fclean re
